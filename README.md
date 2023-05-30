@@ -10,7 +10,7 @@ You may try and use any other mod that improves enemy AI and it should work just
 - All skill and perk deck effects (including most default upgrades) are disabled
 - Grace period is practically disabled
 - Non-pistol akimbo and special weapons are locked
-- ICTV is unlocked by default
+- All armors are unlocked by default
 - Aim punch from being shot is increased
 - Revive health decreases with each revive
 - Stamina drain from jumping is increased

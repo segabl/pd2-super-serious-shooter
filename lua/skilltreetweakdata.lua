@@ -1,4 +1,4 @@
-Hooks:PostHook(SkillTreeTweakData, "init", "init_sss", function (self)
+Hooks:PostHook(SkillTreeTweakData, "init", "init_sss", function (self, tweak_data)
 	for _, skill_data in pairs(self.skills) do
 		for _, tier_data in ipairs(skill_data) do
 			tier_data.upgrades = {}
@@ -21,6 +21,7 @@ Hooks:PostHook(SkillTreeTweakData, "init", "init_sss", function (self)
 		"player_hostage_trade",
 		"player_sec_camera_highlight",
 		"player_corpse_dispose",
+		"player_corpse_dispose_amount_1",
 		"doctor_bag",
 		"ammo_bag",
 		"trip_mine",
@@ -31,6 +32,12 @@ Hooks:PostHook(SkillTreeTweakData, "init", "init_sss", function (self)
 		"bodybags_bag",
 		"armor_kit",
 		"saw",
-		"cable_tie"
+		"cable_tie",
+		"body_armor1",
+		"body_armor2",
+		"body_armor3",
+		"body_armor4",
+		"body_armor5",
+		"body_armor6"
 	}
 end)
