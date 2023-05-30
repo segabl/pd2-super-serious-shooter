@@ -7,4 +7,5 @@ SuperSeriousShooter:difficulty_tweak(PlayerTweakData, function (self)
 
 	self.suppression.max_value = 5
 	self.suppression.receive_mul = 1
+	self.suppression.tolerance = 0
 end)
