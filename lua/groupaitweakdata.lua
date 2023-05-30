@@ -4,7 +4,9 @@ Hooks:PostHook(GroupAITweakData, "init", "init_sss", function (self)
 	self.spawn_cooldown_mul = 0.5
 
 	local force = self.besiege.assault.force
-	self.besiege.assault.force = { force[1] * 0.4, force[2] * 0.4, force[3] * 0.4 }
+	self.besiege.assault.force = { force[1] * 0.375, force[2] * 0.375, force[3] * 0.375 }
+	self.besiege.assault.force_balance_mul = { 1, 1.5, 2, 2.5 }
+	self.besiege.assault.force_pool_balance_mul = { 1, 1.5, 2, 2.5 }
 	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = { math.huge, math.huge }
 
 	local enable_reenforce = true
