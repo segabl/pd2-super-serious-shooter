@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<mod>
+
+	<tweak definition="tweak.xml"/>
+
+	<hooks script_path="mod.lua">
+
+		<group hook_id="lib/">
+			<post :hook_id="managers/blackmarketmanager"/>
+			<post :hook_id="network/matchmaking/networkmatchmakingsteam"/>
+
+			<group :hook_id="tweak_data/">
+				<post :hook_id="charactertweakdata"/>
+				<post :hook_id="groupaitweakdata"/>
+				<post :hook_id="playertweakdata"/>
+				<post :hook_id="skilltreetweakdata"/>
+				<post :hook_id="upgradestweakdata"/>
+				<post :hook_id="weapontweakdata"/>
+			</group>
+
+			<group :hook_id="units/beings/player/">
+				<post :hook_id="states/playerstandard"/>
+				<post :hook_id="playercamera"/>
+				<post :hook_id="playerdamage"/>
+			</group>
+
+			<group :hook_id="units/enemies/cop/">
+				<post :hook_id="logics/coplogicbase"/>
+				<post :hook_id="logics/coplogicidle"/>
+				<post :hook_id="copdamage"/>
+			</group>
+
+			<post :hook_id="units/player_team/teamaibase"/>
+			<post :hook_id="units/player_team/teamaidamage"/>
+		</group>
+
+	</hooks>
+
+</mod>
