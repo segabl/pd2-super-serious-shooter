@@ -1,5 +1,5 @@
 function BlackMarketManager:weapon_locked_sss()
-	return false, "bm_menu_sss_locked", "guis/textures/pd2/skilltree/padlock"
+	return false, "bm_menu_sss_locked", "guis/textures/pd2/lock_skill"
 end
 
 function BlackMarketManager:get_sorted_armors(hide_locked)
