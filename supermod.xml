@@ -6,6 +6,7 @@
 	<hooks script_path="mod.lua">
 
 		<group hook_id="lib/">
+			<post :hook_id="managers/mission/elementspawnenemydummy"/>
 			<post :hook_id="managers/blackmarketmanager"/>
 			<post :hook_id="network/matchmaking/networkmatchmakingsteam"/>
 
