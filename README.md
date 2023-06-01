@@ -3,7 +3,7 @@
 A mod that turns the game into a (mediocre) tactical shooter.
 
 While it is not a requirement, it is highly recommended to use [Streamlined Heisting](https://github.com/segabl/pd2-streamlined-heisting) in combination with this.
-You may try and use any other mod that improves enemy AI and it should work just fine but the mod is mostly made with Streamlined Heisting in mind.
+You may try and use another other mod that improves enemy AI (such as REAI, LIES or FSS) which should work fine aswell but the mod is mainly tested with Streamlined Heisting.
 
 ## Player Changes
 
