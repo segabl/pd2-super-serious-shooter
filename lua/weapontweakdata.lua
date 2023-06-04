@@ -20,11 +20,11 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 
 			if v.spread then
 				v.spread.standing = 3
-				v.spread.crouching = 1.2
-				v.spread.steelsight = 1
+				v.spread.crouching = 2
+				v.spread.steelsight = 1.5
 				v.spread.moving_standing = 4
-				v.spread.moving_crouching = 1.6
-				v.spread.moving_steelsight = 1.2
+				v.spread.moving_crouching = 3
+				v.spread.moving_steelsight = 1.5
 			end
 
 			if v.kick then
