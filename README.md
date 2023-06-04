@@ -3,7 +3,7 @@
 A mod that turns the game into a (mediocre) tactical shooter.
 
 While it is not a requirement, it is highly recommended to use [Streamlined Heisting](https://github.com/segabl/pd2-streamlined-heisting) in combination with this.
-You may try and use another other mod that improves enemy AI (such as REAI, LIES or FSS) which should work fine aswell but the mod is mainly tested with Streamlined Heisting.
+You may try and use another mod that improves enemy AI (such as REAI, LIES or FSS) which should work fine aswell but the mod is mainly tested with Streamlined Heisting.
 
 ## Player Changes
 
@@ -14,6 +14,9 @@ You may try and use another other mod that improves enemy AI (such as REAI, LIES
 - Aim punch from being shot is increased
 - Revive health decreases with each revive
 - Stamina drain from jumping is increased
+- Enemy intimidation is only possible during assault breaks and chances are reduced
+- Weapon recoil is increased when hipfiring and reduced when crouching or aiming down sights
+- Weapon spread is increased when moving and reduced when standing still, crouching or aiming down sights
 
 ## Team AI Changes
 
