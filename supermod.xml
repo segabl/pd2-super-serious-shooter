@@ -29,6 +29,8 @@
 				<post :hook_id="playerdamage"/>
 			</group>
 
+			<post :hook_id="units/cameras/fpcameraplayerbase"/>
+
 			<group :hook_id="units/enemies/cop/">
 				<post :hook_id="logics/coplogicbase"/>
 				<post :hook_id="logics/coplogicidle"/>

@@ -17,6 +17,7 @@ You may try and use another mod that improves enemy AI (such as REAI, LIES or FS
 - Enemy intimidation is only possible during assault breaks and chances are reduced
 - Weapon recoil is increased when hipfiring and reduced when crouching or aiming down sights
 - Weapon spread is increased when moving and reduced when standing still, crouching or aiming down sights
+- Aim re-centering will only apply to the most recently fired shot
 
 ## Team AI Changes
 
