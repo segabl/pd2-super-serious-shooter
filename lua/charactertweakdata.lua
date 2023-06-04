@@ -1,9 +1,12 @@
-Hooks:PostHook(CharacterTweakData, "init", "init_sss", function (self)
-	self.presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.05
-	self.presets.gang_member_damage.REGENERATE_TIME = 5
-	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 5
-	self.presets.gang_member_damage.hurt_severity.bullet.health_reference = "full"
-	self.presets.gang_member_damage.hurt_severity.bullet.zones = {
+local _presets_original = CharacterTweakData._presets
+function CharacterTweakData:_presets(tweak_data, ...)
+	local presets = _presets_original(self, tweak_data, ...)
+
+	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.05
+	presets.gang_member_damage.REGENERATE_TIME = 5
+	presets.gang_member_damage.REGENERATE_TIME_AWAY = 5
+	presets.gang_member_damage.hurt_severity.bullet.health_reference = "full"
+	presets.gang_member_damage.hurt_severity.bullet.zones = {
 		{
 			health_limit = 0,
 			light = 1
@@ -18,7 +21,73 @@ Hooks:PostHook(CharacterTweakData, "init", "init_sss", function (self)
 			moderate = 0.5
 		}
 	}
-end)
+
+	presets.surrender.easy = {
+		base_chance = 0,
+		significant_chance = -1,
+		reasons = {
+			pants_down = 0.5,
+			weapon_down = 0.35,
+			flanked = 0.3,
+			unaware_of_aggressor = 0.2,
+			isolated = 0.15
+		},
+		factors = {
+			health = {
+				[1.0] = 0,
+				[0.0] = 0.75
+			},
+			aggressor_dis = {
+				[100] = 0.15,
+				[1000] = 0
+			}
+		}
+	}
+	presets.surrender.normal = {
+		base_chance = 0,
+		significant_chance = -1,
+		reasons = {
+			pants_down = 0.45,
+			weapon_down = 0.25,
+			flanked = 0.25,
+			unaware_of_aggressor = 0.15,
+			isolated = 0.1
+		},
+		factors = {
+			health = {
+				[0.75] = 0,
+				[0.0] = 0.5
+			},
+			aggressor_dis = {
+				[100] = 0.1,
+				[1000] = 0
+			}
+		}
+	}
+	presets.surrender.hard = {
+		base_chance = 0,
+		significant_chance = -1,
+		reasons = {
+			pants_down = 0.4,
+			weapon_down = 0.15,
+			flanked = 0.2,
+			unaware_of_aggressor = 0.1,
+			isolated = 0.05
+		},
+		factors = {
+			health = {
+				[0.5] = 0,
+				[0.0] = 0.25
+			},
+			aggressor_dis = {
+				[100] = 0.05,
+				[1000] = 0
+			}
+		}
+	}
+
+	return presets
+end
 
 SuperSeriousShooter:difficulty_tweak(CharacterTweakData, function (self)
 	local diff_i = self.tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")

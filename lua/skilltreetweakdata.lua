@@ -17,6 +17,7 @@ Hooks:PostHook(SkillTreeTweakData, "init", "init_sss", function (self, tweak_dat
 	end
 
 	self.default_upgrades = {
+		"player_intimidate_enemies",
 		"player_special_enemy_highlight",
 		"player_hostage_trade",
 		"player_sec_camera_highlight",
