@@ -1,11 +1,37 @@
 Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 	self.tweak_data = tweak_data
 
+	local function kick_standing(val)
+		return val * 1.25
+	end
+	local function kick_crouching(val)
+		return val * 1
+	end
+	local function kick_steelsight(val)
+		return val * 0.75
+	end
+
 	for _, v in pairs(self) do
-		if type(v) == "table" and v.categories then
+		if type(v) == "table" and v.autohit then
 			local c = table.list_to_set(v.categories)
 			if c.flamethrower or c.minigun or c.grenade_launcher or c.bow or c.crossbow or c.akimbo and (not c.pistol or c.revolver) then
 				v.unlock_func = "weapon_locked_sss"
+			end
+
+			if v.spread then
+				v.spread.standing = 3
+				v.spread.crouching = 1.2
+				v.spread.steelsight = 1
+				v.spread.moving_standing = 4
+				v.spread.moving_crouching = 1.6
+				v.spread.moving_steelsight = 1.2
+			end
+
+			if v.kick then
+				local standing = v.kick.standing
+				v.kick.standing = table.collect(standing, kick_standing)
+				v.kick.crouching = table.collect(standing, kick_crouching)
+				v.kick.steelsight = table.collect(standing, kick_steelsight)
 			end
 		end
 	end
