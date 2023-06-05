@@ -7,6 +7,7 @@
 
 		<group hook_id="lib/">
 			<group :hook_id="managers/">
+				<post :hook_id="group_ai_states/groupaistatebase"/>
 				<post :hook_id="group_ai_states/groupaistatebesiege"/>
 				<post :hook_id="mission/elementspawnenemydummy"/>
 				<post :hook_id="blackmarketmanager"/>
