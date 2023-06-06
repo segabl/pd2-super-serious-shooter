@@ -16,6 +16,7 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 			local c = table.list_to_set(v.categories)
 			if c.flamethrower or c.minigun or c.grenade_launcher or c.bow or c.crossbow or c.akimbo and (not c.pistol or c.revolver) then
 				v.AMMO_PICKUP = { 0, 0 }
+				v.unlock_func = "super_serious_shooter"
 				v.global_value = "super_serious_shooter_weapon"
 			end
 

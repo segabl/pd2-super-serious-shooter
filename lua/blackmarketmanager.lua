@@ -14,28 +14,28 @@ function BlackMarketManager:get_sorted_armors(hide_locked)
 	return sort_data, armor_level_data
 end
 
-Hooks:PostHook(BlackMarketManager, "_verify_dlc_items", "_verify_dlc_items_sss", function (self)
-	for weapon_id, weapon in pairs(Global.blackmarket_manager.weapons) do
-		if tweak_data.weapon[weapon_id] and tweak_data.weapon[weapon_id].global_value == "super_serious_shooter_weapon" then
-			weapon.unlocked = false
-		end
-	end
-end)
+function BlackMarketManager:super_serious_shooter()
+	return false, "bm_menu_sss_weapon_locked", "guis/textures/pd2/blackmarket/important_lock"
+end
 
-Hooks:PostHook(BlackMarketManager, "load", "load_sss", function (self, data)
-	if not data.blackmarket then
-		return
-	end
-
-	for _, category in ipairs({ "primaries", "secondaries" }) do
-		if self._global.crafted_items[category] then
-			for _, crafted in pairs(self._global.crafted_items[category]) do
-				for id in pairs(crafted.global_values or {}) do
-					if tweak_data.weapon.factory.parts[id] and tweak_data.weapon.factory.parts[id].global_value == "super_serious_shooter_part" then
-						crafted.global_values[id] = tweak_data.weapon.factory.parts[id].global_value
-					end
+Hooks:PostHook(BlackMarketManager, "load", "load_sss", function (self)
+	local function check_crafted_category(category)
+		for _, crafted in pairs(self._global.crafted_items[category] or {}) do
+			for id in pairs(crafted.global_values or {}) do
+				if tweak_data.weapon.factory.parts[id] and tweak_data.weapon.factory.parts[id].global_value == "super_serious_shooter_part" then
+					crafted.global_values[id] = tweak_data.weapon.factory.parts[id].global_value
 				end
 			end
+		end
+	end
+
+	check_crafted_category("primaries")
+	check_crafted_category("secondaries")
+
+	for weapon_id, weapon in pairs(self._global.weapons) do
+		if tweak_data.weapon[weapon_id] and tweak_data.weapon[weapon_id].global_value == "super_serious_shooter_weapon" then
+			weapon.level = 0
+			weapon.skill_based = false
 		end
 	end
 end)
