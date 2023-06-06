@@ -5,11 +5,15 @@ A mod that turns the game into a (mediocre) tactical shooter.
 While it is not a requirement, it is highly recommended to use [Streamlined Heisting](https://github.com/segabl/pd2-streamlined-heisting) in combination with this.
 You may try and use another mod that improves enemy AI (such as REAI, LIES or FSS) which should work fine aswell but the mod is mainly tested with Streamlined Heisting.
 
+This mod doesn't touch your save file, skills or inventory.
+
 ## Player Changes
 
 - All skill and perk deck effects (including most default upgrades) are disabled
 - Grace period is practically disabled
 - Non-pistol akimbo and special weapons are locked
+- Some shotgun ammo types are locked
+- Underbarrel ammo pickup is disabled
 - All armors are unlocked by default
 - Aim punch from being shot is increased
 - Revive health decreases with each revive
