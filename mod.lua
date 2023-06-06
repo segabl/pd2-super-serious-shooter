@@ -15,7 +15,8 @@ if not SuperSeriousShooter then
 
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitSSS", function (loc)
 		loc:add_localized_strings({
-			bm_menu_sss_locked = "This is not a super serious weapon"
+			bm_menu_sss_weapon_locked = "This is not a super serious weapon",
+			bm_menu_sss_part_locked = "This is not a super serious part"
 		})
 	end)
 end

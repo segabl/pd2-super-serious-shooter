@@ -15,7 +15,7 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 		if type(v) == "table" and v.autohit then
 			local c = table.list_to_set(v.categories)
 			if c.flamethrower or c.minigun or c.grenade_launcher or c.bow or c.crossbow or c.akimbo and (not c.pistol or c.revolver) then
-				v.unlock_func = "weapon_locked_sss"
+				v.global_value = "super_serious_shooter_weapon"
 			end
 
 			if v.spread then
