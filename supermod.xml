@@ -14,6 +14,7 @@
 			</group>
 
 			<post :hook_id="network/matchmaking/networkmatchmakingsteam"/>
+			<post :hook_id="network/matchmaking/networkmatchmakingepic"/>
 
 			<group :hook_id="tweak_data/">
 				<post :hook_id="charactertweakdata"/>
