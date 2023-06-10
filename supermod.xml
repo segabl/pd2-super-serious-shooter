@@ -13,8 +13,7 @@
 				<post :hook_id="blackmarketmanager"/>
 			</group>
 
-			<post :hook_id="network/matchmaking/networkmatchmakingsteam"/>
-			<post :hook_id="network/matchmaking/networkmatchmakingepic"/>
+			<post :hook_id="network/base/networkmanager"/>
 
 			<group :hook_id="tweak_data/">
 				<post :hook_id="charactertweakdata"/>
