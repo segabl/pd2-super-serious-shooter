@@ -94,15 +94,17 @@ SuperSeriousShooter:difficulty_tweak(CharacterTweakData, function (self)
 	self.presets.gang_member_damage.HEALTH_INIT = 40 + (diff_i - 2) * 10
 
 	self.biker_boss.HEALTH_INIT = 400
-	self.biker_boss.player_health_scaling_mul = 1.25
-	self.chavez_boss.HEALTH_INIT = 400
-	self.chavez_boss.player_health_scaling_mul = 1.25
+	self.biker_boss.player_health_scaling_mul = 1.1
+	self.chavez_boss.HEALTH_INIT = 300
+	self.chavez_boss.player_health_scaling_mul = 1.1
 	self.drug_lord_boss.HEALTH_INIT = 400
-	self.drug_lord_boss.player_health_scaling_mul = 1.25
+	self.drug_lord_boss.player_health_scaling_mul = 1.1
 	self.hector_boss.HEALTH_INIT = 400
-	self.hector_boss.player_health_scaling_mul = 1.25
-	self.mobster_boss.HEALTH_INIT = 400
-	self.mobster_boss.player_health_scaling_mul = 1.25
+	self.hector_boss.player_health_scaling_mul = 1.1
+	self.mobster_boss.HEALTH_INIT = 300
+	self.mobster_boss.player_health_scaling_mul = 1.1
 	self.triad_boss.HEALTH_INIT = 400
-	self.triad_boss.player_health_scaling_mul = 1.25
+	self.triad_boss.player_health_scaling_mul = 1.1
+	self.deep_boss.HEALTH_INIT = 400
+	self.deep_boss.player_health_scaling_mul = 1.1
 end)
