@@ -107,4 +107,7 @@ SuperSeriousShooter:difficulty_tweak(CharacterTweakData, function (self)
 	self.triad_boss.player_health_scaling_mul = 1.1
 	self.deep_boss.HEALTH_INIT = 400
 	self.deep_boss.player_health_scaling_mul = 1.1
+
+	self.tank_armor_damage_mul = 1
+	self.tank_glass_damage_mul = 1
 end)
