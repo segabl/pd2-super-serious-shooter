@@ -11,6 +11,7 @@
 				<post :hook_id="group_ai_states/groupaistatebesiege"/>
 				<post :hook_id="mission/elementspawnenemydummy"/>
 				<post :hook_id="blackmarketmanager"/>
+				<post :hook_id="killzonemanager"/>
 			</group>
 
 			<post :hook_id="network/base/networkmanager"/>
@@ -43,6 +44,9 @@
 
 			<post :hook_id="units/player_team/teamaibase"/>
 			<post :hook_id="units/player_team/teamaidamage"/>
+
+			<post :hook_id="units/weapons/grenades/quickcsgrenade"/>
+			<post :hook_id="units/weapons/grenades/quickflashgrenade"/>
 		</group>
 
 	</hooks>

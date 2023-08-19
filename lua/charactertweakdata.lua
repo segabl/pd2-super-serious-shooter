@@ -110,4 +110,6 @@ SuperSeriousShooter:difficulty_tweak(CharacterTweakData, function (self)
 
 	self.tank_armor_damage_mul = 1
 	self.tank_glass_damage_mul = 1
+
+	self.flashbang_multiplier = 1
 end)
