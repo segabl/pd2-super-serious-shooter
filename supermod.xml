@@ -51,4 +51,9 @@
 
 	</hooks>
 
+	<assets base_path="assets/">
+		<file name="effects/particles/weapons/sniper_glint.effect"/>
+		<file name="effects/textures/weapons/sniper_glint.dds"/>
+	</assets>
+
 </mod>

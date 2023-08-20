@@ -39,6 +39,12 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 	end
 
 	self.sentry_gun.BAG_DMG_MUL = 1
+
+	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail"
+	self.svd_snp_npc.trail = "effects/particles/weapons/sniper_trail"
+	self.svdsil_snp_npc.trail = "effects/particles/weapons/sniper_trail"
+	self.heavy_snp_npc.trail = "effects/particles/weapons/sniper_trail"
+	self.dmr_npc.trail = "effects/particles/weapons/sniper_trail"
 end)
 
 SuperSeriousShooter:difficulty_tweak(WeaponTweakData, function (self)

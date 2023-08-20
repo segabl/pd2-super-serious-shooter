@@ -86,6 +86,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		}
 	}
 
+	for _, preset in pairs(presets.weapon) do
+		for _, weapon in pairs(preset) do
+			weapon.use_laser = nil
+		end
+	end
+
 	return presets
 end
 
