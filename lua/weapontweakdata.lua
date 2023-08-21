@@ -1,6 +1,8 @@
 Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 	self.tweak_data = tweak_data
 
+	self.lemming.CLIP_AMMO_MAX = 10
+
 	local function kick_standing(val)
 		return val * 1.25
 	end
@@ -20,14 +22,27 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 				v.global_value = "super_serious_shooter_weapon"
 			end
 
+			if c.akimbo then
+				v.stats.spread = math.max(1, math.floor(v.stats.spread * 0.75))
+			end
+
+			if c.shotgun and v.rays then
+				v.rays = 8
+			end
+
+			if v.can_shoot_through_shield then
+				v.NR_CLIPS_MAX = math.max(2, math.floor(15 / math.max(2, v.CLIP_AMMO_MAX)))
+				v.AMMO_MAX = v.CLIP_AMMO_MAX * v.NR_CLIPS_MAX
+			end
+
 			-- steelsight spread is applied as a multiplier of (1 + 1 - spread)
 			if v.spread then
-				v.spread.standing = 3
-				v.spread.crouching = 2
-				v.spread.steelsight = 1.5
-				v.spread.moving_standing = c.snp and 8 or 4
-				v.spread.moving_crouching = c.snp and 6 or 3
-				v.spread.moving_steelsight = 1.5
+				v.spread.standing = c.snp and 12 or 3
+				v.spread.crouching = c.snp and 8 or 2
+				v.spread.steelsight = c.snp and 1.875 or 1.5
+				v.spread.moving_standing = c.snp and 24 or 4
+				v.spread.moving_crouching = c.snp and 18 or 3
+				v.spread.moving_steelsight = c.snp and 1.875 or 1.5
 			end
 
 			if v.kick then
@@ -35,6 +50,19 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 				v.kick.standing = table.collect(standing, kick_standing)
 				v.kick.crouching = table.collect(standing, kick_crouching)
 				v.kick.steelsight = table.collect(standing, kick_steelsight)
+			end
+
+			if v.AMMO_PICKUP and v.AMMO_PICKUP[2] > 0 then
+				local ref = self.stats.damage[math.min(v.stats.damage, #self.stats.damage)] * (v.stats_modifiers and v.stats_modifiers.damage or 1)
+				ref = (ref ^ 1.2) * (v.can_shoot_through_shield and 3 or 1) * (v.rays and 2 or 1)
+				if c.flamethrower then
+					ref = ref * 3
+				elseif c.grenade_launcher then
+					ref = ref * 2
+				elseif c.pistol then
+					ref = ref * 1.5
+				end
+				v.AMMO_PICKUP = { 35 / ref, 70 / ref }
 			end
 		end
 	end

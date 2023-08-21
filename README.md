@@ -11,9 +11,11 @@ This mod doesn't touch your save file, skills or inventory.
 
 - All skill and perk deck effects (including most default upgrades) are disabled
 - Grace period is practically disabled
+- LMGs decrease movement speed while active
 - Non-pistol akimbo and special weapons are locked
 - Some shotgun ammo types are locked
 - Underbarrel ammo pickup is disabled
+- Piercing weapons have reduced pickup and total ammo
 - All armors are unlocked by default
 - Aim punch from being shot is increased
 - Revive health decreases with each revive
@@ -38,3 +40,6 @@ This mod doesn't touch your save file, skills or inventory.
 - Enemy logic update rate is increased
 - SWAT turret health is decreased
 - Captain Winters is disabled
+- Flashbangs no longer play warning sounds or lights
+- Teargas bypasses armor and damages health directly
+- Sniper lasers are replaced by a glint
