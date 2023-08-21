@@ -20,12 +20,13 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 				v.global_value = "super_serious_shooter_weapon"
 			end
 
+			-- steelsight spread is applied as a multiplier of (1 + 1 - spread)
 			if v.spread then
 				v.spread.standing = 3
 				v.spread.crouching = 2
 				v.spread.steelsight = 1.5
-				v.spread.moving_standing = 4
-				v.spread.moving_crouching = 3
+				v.spread.moving_standing = c.snp and 8 or 4
+				v.spread.moving_crouching = c.snp and 6 or 3
 				v.spread.moving_steelsight = 1.5
 			end
 

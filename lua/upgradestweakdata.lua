@@ -8,4 +8,7 @@ Hooks:PostHook(UpgradesTweakData, "init", "init_sss", function (self)
 	self.values.player.body_armor.damage_shake[5] = 0.6
 	self.values.player.body_armor.damage_shake[6] = 0.5
 	self.values.player.body_armor.damage_shake[7] = 0.4
+
+	self.weapon_movement_penalty.lmg = 0.8
+	self.weapon_movement_penalty.minigun = 0.8
 end)

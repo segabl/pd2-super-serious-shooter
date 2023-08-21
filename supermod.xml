@@ -17,6 +17,7 @@
 			<post :hook_id="network/base/networkmanager"/>
 
 			<group :hook_id="tweak_data/">
+				<post :hook_id="blackmarkettweakdata"/>
 				<post :hook_id="charactertweakdata"/>
 				<post :hook_id="equipmentstweakdata"/>
 				<post :hook_id="groupaitweakdata"/>
