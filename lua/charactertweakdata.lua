@@ -8,16 +8,16 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.gang_member_damage.hurt_severity.bullet.health_reference = "full"
 	presets.gang_member_damage.hurt_severity.bullet.zones = {
 		{
-			health_limit = 0,
+			health_limit = StreamHeist and 0 or 0.1,
 			light = 1
 		},
 		{
-			health_limit = 0.1,
+			health_limit = StreamHeist and 0.05 or 0.15,
 			light = 0.5,
 			moderate = 0.5
 		},
 		{
-			health_limit = 0.2,
+			health_limit = StreamHeist and 0.1 or 0.2,
 			moderate = 0.5
 		}
 	}
