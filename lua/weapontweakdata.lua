@@ -3,19 +3,29 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 
 	self.lemming.CLIP_AMMO_MAX = 10
 
-	local function kick_standing(val)
-		return val * 1.25
+	for i = 1, #self.stats.recoil do
+		self.stats.recoil[i] = 1 + (#self.stats.recoil - i) * 0.05
 	end
-	local function kick_crouching(val)
-		return val * 1
+
+	for i = 1, #self.stats.spread do
+		self.stats.spread[i] = 0.02 + (#self.stats.spread - i) * 0.08
 	end
-	local function kick_steelsight(val)
-		return val * 0.75
+
+	local function kick_standing(up, down, left, right)
+		return { up * 1.25, down * 1.25, left * 1.25, right * 1.25 }
+	end
+	local function kick_crouching(up, down, left, right)
+		return { up, down, left, right }
+	end
+	local function kick_steelsight(up, down, left, right)
+		return { up * 0.75, down * 0.75, left * 0.75, right * 0.75 }
 	end
 
 	for _, v in pairs(self) do
 		if type(v) == "table" and v.autohit then
 			local c = table.list_to_set(v.categories)
+			local dmg = self.stats.damage[math.min(v.stats.damage, #self.stats.damage)] * (v.stats_modifiers and v.stats_modifiers.damage or 1)
+
 			if c.flamethrower or c.minigun or c.grenade_launcher or c.bow or c.crossbow or c.akimbo and (not c.pistol or c.revolver) then
 				v.AMMO_PICKUP = { 0, 0 }
 				v.unlock_func = "super_serious_shooter"
@@ -35,7 +45,7 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 				v.AMMO_MAX = v.CLIP_AMMO_MAX * v.NR_CLIPS_MAX
 			end
 
-			-- steelsight spread is applied as a multiplier of (1 + 1 - spread)
+			-- steelsight spread is applied as a multiplier of (1 + 1 - spread) on top of standing or crouching
 			if v.spread then
 				v.spread.standing = c.snp and 12 or 3
 				v.spread.crouching = c.snp and 8 or 2
@@ -46,15 +56,22 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 			end
 
 			if v.kick then
-				local standing = v.kick.standing
-				v.kick.standing = table.collect(standing, kick_standing)
-				v.kick.crouching = table.collect(standing, kick_crouching)
-				v.kick.steelsight = table.collect(standing, kick_steelsight)
+				local up, down, left, right = unpack(v.kick.standing)
+				local sum = math.abs(up) + math.abs(down) + math.abs(left) + math.abs(right)
+				if sum > 0 then
+					local mul = (dmg ^ 0.2) * 3
+					up = (up / sum) * mul
+					down = (down / sum) * mul
+					left = (left / sum) * mul
+					right = (right / sum) * mul
+				end
+				v.kick.standing = kick_standing(up, down, left, right)
+				v.kick.crouching = kick_crouching(up, down, left, right)
+				v.kick.steelsight = kick_steelsight(up, down, left, right)
 			end
 
 			if v.AMMO_PICKUP and v.AMMO_PICKUP[2] > 0 then
-				local ref = self.stats.damage[math.min(v.stats.damage, #self.stats.damage)] * (v.stats_modifiers and v.stats_modifiers.damage or 1)
-				ref = (ref ^ 1.2) * (v.can_shoot_through_shield and 3 or 1) * (v.rays and 2 or 1)
+				local ref = (dmg ^ 1.2) * (v.can_shoot_through_shield and 3 or 1) * (v.rays and 2 or 1)
 				if c.flamethrower then
 					ref = ref * 3
 				elseif c.grenade_launcher then
