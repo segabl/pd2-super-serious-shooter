@@ -17,6 +17,7 @@ Hooks:PostHook(SkillTreeTweakData, "init", "init_sss", function (self, tweak_dat
 	end
 
 	self.default_upgrades = {
+		"player_fall_damage_multiplier",
 		"player_primary_weapon_when_downed",
 		"player_intimidate_enemies",
 		"player_special_enemy_highlight",
