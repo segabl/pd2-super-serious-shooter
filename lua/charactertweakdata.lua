@@ -28,9 +28,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		reasons = {
 			pants_down = 0.5,
 			weapon_down = 0.35,
-			flanked = 0.3,
-			unaware_of_aggressor = 0.2,
-			isolated = 0.15
+			isolated = 0.2
 		},
 		factors = {
 			health = {
@@ -49,9 +47,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		reasons = {
 			pants_down = 0.45,
 			weapon_down = 0.25,
-			flanked = 0.25,
-			unaware_of_aggressor = 0.15,
-			isolated = 0.1
+			isolated = 0.15
 		},
 		factors = {
 			health = {
@@ -70,9 +66,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		reasons = {
 			pants_down = 0.4,
 			weapon_down = 0.15,
-			flanked = 0.2,
-			unaware_of_aggressor = 0.1,
-			isolated = 0.05
+			isolated = 0.1
 		},
 		factors = {
 			health = {
@@ -99,22 +93,29 @@ SuperSeriousShooter:difficulty_tweak(CharacterTweakData, function (self)
 	local diff_i = self.tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
 	self.presets.gang_member_damage.HEALTH_INIT = 40 + (diff_i - 2) * 10
 
-	self.biker_boss.HEALTH_INIT = 400
-	self.biker_boss.player_health_scaling_mul = 1.1
+	self.biker_boss.HEALTH_INIT = 300
+	self.biker_boss.player_health_scaling_mul = 1.25
 	self.chavez_boss.HEALTH_INIT = 300
-	self.chavez_boss.player_health_scaling_mul = 1.1
-	self.drug_lord_boss.HEALTH_INIT = 400
-	self.drug_lord_boss.player_health_scaling_mul = 1.1
-	self.hector_boss.HEALTH_INIT = 400
-	self.hector_boss.player_health_scaling_mul = 1.1
+	self.chavez_boss.player_health_scaling_mul = 1.25
+	self.drug_lord_boss.HEALTH_INIT = 300
+	self.drug_lord_boss.player_health_scaling_mul = 1.25
+	self.hector_boss.HEALTH_INIT = 300
+	self.hector_boss.player_health_scaling_mul = 1.25
 	self.mobster_boss.HEALTH_INIT = 300
-	self.mobster_boss.player_health_scaling_mul = 1.1
-	self.triad_boss.HEALTH_INIT = 400
-	self.triad_boss.player_health_scaling_mul = 1.1
-	self.deep_boss.HEALTH_INIT = 400
-	self.deep_boss.player_health_scaling_mul = 1.1
+	self.mobster_boss.player_health_scaling_mul = 1.25
+	self.triad_boss.HEALTH_INIT = 300
+	self.triad_boss.player_health_scaling_mul = 1.25
+	self.deep_boss.HEALTH_INIT = 300
+	self.deep_boss.player_health_scaling_mul = 1.25
 
-	self.tank_armor_damage_mul = 1
+	self.swat.surrender = self.presets.surrender.normal
+	self.heavy_swat.surrender = self.presets.surrender.hard
+	self.fbi_swat.surrender = self.presets.surrender.normal
+	self.fbi_heavy_swat.surrender = self.presets.surrender.hard
+	self.city_swat.surrender = self.presets.surrender.normal
+	self.heavy_swat_sniper.surrender = self.presets.surrender.hard
+
+	self.tank_armor_damage_mul = 0.75
 	self.tank_glass_damage_mul = 1
 
 	self.flashbang_multiplier = 1

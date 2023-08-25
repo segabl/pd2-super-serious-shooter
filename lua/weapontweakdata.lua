@@ -103,13 +103,12 @@ SuperSeriousShooter:difficulty_tweak(WeaponTweakData, function (self)
 	}
 	for weap_id, weap_data in pairs(self) do
 		if weap_id:match("_turret_module") then
-			weap_data.auto.fire_rate = 0.1
-			weap_data.SPREAD = 10
-			weap_data.DAMAGE = diff_i * 0.5
+			weap_data.SPREAD = 5
+			weap_data.DAMAGE = diff_i * 0.25
 			weap_data.DAMAGE_MUL_RANGE = turret_damage_mul
 			weap_data.HEALTH_INIT = 2000
 			weap_data.SHIELD_HEALTH_INIT = 200
-			weap_data.CLIP_SIZE = 300
+			weap_data.CLIP_SIZE = 400
 			weap_data.BAG_DMG_MUL = 20
 			weap_data.SHIELD_DMG_MUL = 1
 			weap_data.FIRE_DMG_MUL = 1
