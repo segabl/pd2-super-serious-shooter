@@ -30,6 +30,7 @@
 			</group>
 
 			<group :hook_id="units/beings/player/">
+				<post :hook_id="states/playerbleedout"/>
 				<post :hook_id="states/playerstandard"/>
 				<post :hook_id="playercamera"/>
 				<post :hook_id="playerdamage"/>
@@ -40,6 +41,7 @@
 			<group :hook_id="units/enemies/cop/">
 				<post :hook_id="logics/coplogicbase"/>
 				<post :hook_id="logics/coplogicidle"/>
+				<post :hook_id="copbase"/>
 				<post :hook_id="copdamage"/>
 			</group>
 
