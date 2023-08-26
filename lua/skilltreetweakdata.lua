@@ -52,6 +52,9 @@ Hooks:PostHook(SkillTreeTweakData, "init", "init_sss", function (self, tweak_dat
 		"body_armor3",
 		"body_armor4",
 		"body_armor5",
-		"body_armor6"
+		"body_armor6",
+		"player_buy_bodybags_asset",
+		"player_additional_assets",
+		"player_buy_spotter_asset"
 	}
 end)

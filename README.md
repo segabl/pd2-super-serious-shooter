@@ -21,9 +21,10 @@ This mod doesn't touch your save file, skills or inventory.
 - Revive health decreases with each revive
 - Stamina drain from jumping is increased
 - Enemy intimidation is only possible during assault breaks and chances are reduced
-- Weapon recoil is increased when hipfiring and reduced when crouching or aiming down sights
+- Weapon recoil is based on weapon damage and increased when hipfiring and reduced when crouching or aiming down sights
 - Weapon spread is increased when moving and reduced when standing still, crouching or aiming down sights
 - Aim re-centering will only apply to the most recently fired shot
+- Insider assets are available for purchase by default
 
 ## Team AI Changes
 
@@ -42,4 +43,5 @@ This mod doesn't touch your save file, skills or inventory.
 - Captain Winters is disabled
 - Flashbangs no longer play warning sounds or lights
 - Teargas bypasses armor and damages health directly
-- Sniper lasers are replaced by a glint
+- Sniper lasers are replaced by a glint and bullet tracers
+- Shields will use pistols instead of SMGs
