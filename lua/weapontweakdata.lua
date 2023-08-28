@@ -8,7 +8,7 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 	end
 
 	for i = 1, #self.stats.spread do
-		self.stats.spread[i] = 0.02 + (#self.stats.spread - i) * 0.08
+		self.stats.spread[i] = 0.02 + (#self.stats.spread - i) * 0.06
 	end
 
 	local function kick_standing(up, down, left, right)
@@ -47,12 +47,12 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 
 			-- steelsight spread is applied as a multiplier of (1 + 1 - spread) on top of standing or crouching
 			if v.spread then
-				v.spread.standing = c.snp and 12 or 3
-				v.spread.crouching = c.snp and 8 or 2
-				v.spread.steelsight = c.snp and 1.875 or 1.5
-				v.spread.moving_standing = c.snp and 24 or 4
-				v.spread.moving_crouching = c.snp and 18 or 3
-				v.spread.moving_steelsight = c.snp and 1.875 or 1.5
+				v.spread.standing = c.snp and 10 or 2
+				v.spread.crouching = c.snp and 10 or 2
+				v.spread.steelsight = c.shotgun and 1 or c.snp and 1.9 or 1.5
+				v.spread.moving_standing = c.snp and 20 or 3
+				v.spread.moving_crouching = c.snp and 20 or 3
+				v.spread.moving_steelsight = c.shotgun and 1 or c.snp and 1.945 or 1.65
 			end
 
 			if v.kick then
