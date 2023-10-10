@@ -27,6 +27,15 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 		return
 	end
 
+	local t = managers.player:player_timer():time()
+	if not self._last_teargas_hit_t or self._last_teargas_hit_t + 5 < t then
+		self._teargas_damage_ramp = 0
+	else
+		self._teargas_damage_ramp = math.min(self._teargas_damage_ramp + 0.1, 1)
+	end
+
+	self._last_teargas_hit_t = t
+
 	self._unit:sound():play("player_hit")
 
 	self:_hit_direction(attack_data.col_ray.origin, attack_data.col_ray.ray)
@@ -35,7 +44,7 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 		return
 	end
 
-	attack_data.damage = managers.player:modify_value("damage_taken", attack_data.damage, attack_data)
+	attack_data.damage = managers.player:modify_value("damage_taken", attack_data.damage, attack_data) * self._teargas_damage_ramp
 
 	self:mutator_update_attack_data(attack_data)
 	self:_check_chico_heal(attack_data)
