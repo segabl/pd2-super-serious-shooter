@@ -20,11 +20,11 @@ This mod doesn't touch your save file, skills or inventory.
 - Aim punch from being shot is increased
 - Revive health decreases with each revive
 - Stamina drain from jumping is increased
-- Enemy intimidation is only possible during assault breaks and chances are reduced
 - Weapon recoil is based on weapon damage and increased when hipfiring and reduced when crouching or aiming down sights
 - Weapon spread is increased when moving and reduced when standing still, crouching or aiming down sights
 - Aim re-centering will only apply to the most recently fired shot
 - Insider assets are available for purchase by default
+- All bags can be sprinted with
 
 ## Team AI Changes
 
@@ -37,6 +37,7 @@ This mod doesn't touch your save file, skills or inventory.
 
 - Enemy amount is reduced
 - Special enemies other than Shields are disabled (other specials can still spawn as scripted spawns)
+- Enemy intimidation is only possible during assault breaks and chances are reduced
 - Enemy accuracy is increased when they stand still
 - Enemy logic update rate is increased
 - SWAT turret health is decreased
