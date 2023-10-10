@@ -5,7 +5,8 @@ end
 Hooks:PostHook(GroupAIStateBase, "_init_misc_data", "_init_misc_data_sss", register_special_types)
 Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "on_simulation_started_sss", register_special_types)
 
-local has_room_for_police_hostage_original = GroupAIStateBase.has_room_for_police_hostage
-function GroupAIStateBase:has_room_for_police_hostage(...)
-	return not self:get_assault_mode() and has_room_for_police_hostage_original(self, ...) or false
+function GroupAIStateBase:has_room_for_police_hostage()
+	return not self:get_assault_mode() and self._police_hostage_headcount + table.size(self._converted_police) < 4 or false
 end
+
+function GroupAIStateBase:_process_recurring_grp_SO() end
