@@ -42,6 +42,7 @@
 
 			<group :hook_id="units/enemies/cop/">
 				<post :hook_id="actions/full_body/copactionhurt"/>
+				<post :hook_id="actions/upper_body/copactionshoot"/>
 				<post :hook_id="logics/coplogicbase"/>
 				<post :hook_id="logics/coplogicidle"/>
 				<post :hook_id="copbase"/>
