@@ -16,7 +16,7 @@ This mod doesn't touch your save file, skills or inventory.
 - Some shotgun ammo types are locked
 - Underbarrel ammo pickup is disabled
 - Piercing weapons have reduced pickup and total ammo
-- All armors are unlocked by default
+- All armors are unlocked by default and their stats have been changed to scale linearly
 - Aim punch from being shot is increased
 - Revive health decreases with each revive
 - Stamina drain from jumping is increased

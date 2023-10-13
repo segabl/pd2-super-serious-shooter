@@ -1,13 +1,29 @@
 Hooks:PostHook(UpgradesTweakData, "init", "init_sss", function (self)
 	self.sentry_gun_base_armor = 50
 
-	self.values.player.body_armor.damage_shake[1] = 1
-	self.values.player.body_armor.damage_shake[2] = 0.9
-	self.values.player.body_armor.damage_shake[3] = 0.8
-	self.values.player.body_armor.damage_shake[4] = 0.7
-	self.values.player.body_armor.damage_shake[5] = 0.6
-	self.values.player.body_armor.damage_shake[6] = 0.5
-	self.values.player.body_armor.damage_shake[7] = 0.4
+	for i in ipairs(self.values.player.body_armor.armor) do
+		self.values.player.body_armor.armor[i] = 2.5 * (i - 1)
+	end
+
+	for i in ipairs(self.values.player.body_armor.movement) do
+		self.values.player.body_armor.movement[i] = 1.2 - 0.1 * (i - 1)
+	end
+
+	for i in ipairs(self.values.player.body_armor.concealment) do
+		self.values.player.body_armor.concealment[i] = 30 - 4 * (i - 1)
+	end
+
+	for i in ipairs(self.values.player.body_armor.dodge) do
+		self.values.player.body_armor.dodge[i] = 0.15 - 0.05 * (i - 1)
+	end
+
+	for i in ipairs(self.values.player.body_armor.damage_shake) do
+		self.values.player.body_armor.damage_shake[i] = 1 - 0.1 * (i - 1)
+	end
+
+	for i in ipairs(self.values.player.body_armor.stamina) do
+		self.values.player.body_armor.stamina[i] = 1 - 0.05 * (i - 1)
+	end
 
 	self.weapon_movement_penalty.lmg = 0.8
 	self.weapon_movement_penalty.minigun = 0.8
