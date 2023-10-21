@@ -1,5 +1,5 @@
 Hooks:PostHook(CopActionShoot, "init", "init_sss", function (self)
-	self._glare_bitmap = self._glint_effect and managers.hud:panel(PlayerBase.PLAYER_INFO_HUD_FULLSCREEN_PD2):bitmap({
+	self._glare_bitmap = self._glint_effect and managers.hud._fullscreen_workspace:panel():bitmap({
 		texture = "guis/textures/pd2/particles/fill",
 		color = Color.red,
 		alpha = 0,
