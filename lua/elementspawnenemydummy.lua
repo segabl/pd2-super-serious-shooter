@@ -35,13 +35,13 @@ ElementSpawnEnemyDummy.sss_replacements = {
 	[("units/pd2_dlc_bex/characters/ene_swat_policia_sniper/ene_swat_policia_sniper"):key()] = sniper_replacement
 }
 
-produce_original = ElementSpawnEnemyDummy.produce
+local produce_original = ElementSpawnEnemyDummy.produce
 function ElementSpawnEnemyDummy:produce(params, ...)
 	if params and params.name then
 		return produce_original(self, params, ...)
 	end
 
-	local enemy_name = self._enemy_name
+	local enemy_name = self._possible_enemies and self._possible_enemies[1] or self._patched_enemy_name or self._enemy_name
 	local replacement_data = ElementSpawnEnemyDummy.sss_replacements[enemy_name:key()]
 	if not replacement_data then
 		return produce_original(self, params, ...)
