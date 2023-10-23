@@ -38,6 +38,8 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 
 			if c.shotgun and v.rays then
 				v.rays = 8
+				v.stats_modifiers = v.stats_modifiers or {}
+				v.stats_modifiers.damage = (v.stats_modifiers.damage or 1) * 2
 			end
 
 			if v.can_shoot_through_shield then
@@ -49,10 +51,10 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 			if v.spread then
 				v.spread.standing = c.snp and 10 or 2
 				v.spread.crouching = c.snp and 10 or 2
-				v.spread.steelsight = c.shotgun and 1 or c.snp and 1.9 or 1.5
+				v.spread.steelsight = c.snp and 1.9 or 1.5
 				v.spread.moving_standing = c.snp and 20 or 3
 				v.spread.moving_crouching = c.snp and 20 or 3
-				v.spread.moving_steelsight = c.shotgun and 1 or c.snp and 1.945 or 1.65
+				v.spread.moving_steelsight = c.snp and 1.945 or 1.65
 			end
 
 			if v.kick then
@@ -81,6 +83,8 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 				end
 				v.AMMO_PICKUP = { 35 / ref, 70 / ref }
 			end
+
+			v.damage_falloff = nil
 		end
 	end
 
