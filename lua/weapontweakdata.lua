@@ -22,7 +22,7 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 	end
 
 	for _, v in pairs(self) do
-		if type(v) == "table" and v.autohit then
+		if type(v) == "table" and v.autohit ~= nil then
 			local c = table.list_to_set(v.categories)
 			local dmg = self.stats.damage[math.min(v.stats.damage, #self.stats.damage)] * (v.stats_modifiers and v.stats_modifiers.damage or 1)
 
