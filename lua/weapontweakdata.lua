@@ -11,14 +11,8 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 		self.stats.spread[i] = 0.02 + (#self.stats.spread - i) * 0.06
 	end
 
-	local function kick_standing(up, down, left, right)
-		return { up * 1.25, down * 1.25, left * 1.25, right * 1.25 }
-	end
-	local function kick_crouching(up, down, left, right)
-		return { up, down, left, right }
-	end
-	local function kick_steelsight(up, down, left, right)
-		return { up * 0.75, down * 0.75, left * 0.75, right * 0.75 }
+	local function kick(up, down, left, right, mul)
+		return { up * mul, down * mul, left * mul, right * mul }
 	end
 
 	for _, v in pairs(self) do
@@ -45,14 +39,14 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 				v.AMMO_MAX = v.CLIP_AMMO_MAX * v.NR_CLIPS_MAX
 			end
 
-			-- steelsight spread is applied as a multiplier of (1 + 1 - spread) on top of standing or crouching
+			-- steelsight spread is applied as a multiplier of (2 - spread) on top of standing or crouching
 			if v.spread then
-				v.spread.standing = c.snp and 10 or 2
-				v.spread.crouching = c.snp and 10 or 2
-				v.spread.steelsight = c.shotgun and 1 or c.snp and 1.9 or 1.5
-				v.spread.moving_standing = c.snp and 20 or 3
-				v.spread.moving_crouching = c.snp and 20 or 3
-				v.spread.moving_steelsight = c.shotgun and 1 or c.snp and 1.945 or 1.65
+				v.spread.standing = c.snp and 10 or c.shotgun and 3 or 2
+				v.spread.crouching = c.snp and 10 or c.shotgun and 3 or 2
+				v.spread.steelsight = c.snp and 1.9 or 1.5
+				v.spread.moving_standing = c.snp and 20 or c.shotgun and 6 or 4
+				v.spread.moving_crouching = c.snp and 20 or c.shotgun and 6 or 4
+				v.spread.moving_steelsight = c.snp and 1.945 or 1.75 -- not actually used by the game
 			end
 
 			if v.kick then
@@ -65,9 +59,9 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 					left = (left / sum) * mul
 					right = (right / sum) * mul
 				end
-				v.kick.standing = kick_standing(up, down, left, right)
-				v.kick.crouching = kick_crouching(up, down, left, right)
-				v.kick.steelsight = kick_steelsight(up, down, left, right)
+				v.kick.standing = kick(up, down, left, right, 1.25)
+				v.kick.crouching = kick(up, down, left, right, 1)
+				v.kick.steelsight = kick(up, down, left, right, 0.75)
 			end
 
 			if v.AMMO_PICKUP and v.AMMO_PICKUP[2] > 0 then
