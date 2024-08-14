@@ -13,6 +13,7 @@ This mod doesn't touch your save file, skills or inventory.
 - Grace period is practically disabled
 - LMGs decrease movement speed while active
 - Non-pistol akimbo and special weapons are locked
+- Shotguns deal per-pellet damage
 - Some shotgun ammo types are locked
 - Underbarrel ammo pickup is disabled
 - Piercing weapons have reduced pickup and total ammo

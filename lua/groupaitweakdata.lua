@@ -1,6 +1,7 @@
 Hooks:PostHook(GroupAITweakData, "init", "init_sss", function (self)
 	self.smoke_and_flash_grenade_timeout = { 7.5, 15 }
 	self.min_grenade_timeout = 10
+	self.no_grenade_push_delay = 10
 
 	local force = self.besiege.assault.force
 	self.besiege.assault.force = { force[1] * 0.35, force[2] * 0.35, force[3] * 0.35 }

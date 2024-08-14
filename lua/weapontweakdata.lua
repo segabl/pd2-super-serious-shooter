@@ -4,11 +4,17 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 	self.lemming.CLIP_AMMO_MAX = 10
 
 	for i = 1, #self.stats.recoil do
-		self.stats.recoil[i] = 1 + (#self.stats.recoil - i) * 0.05
+		self.stats.recoil[i] = 0.5 + (#self.stats.recoil - i) * 0.05
 	end
 
 	for i = 1, #self.stats.spread do
 		self.stats.spread[i] = 0.02 + (#self.stats.spread - i) * 0.06
+	end
+
+	-- so we don't have to use stats_modifiers to increase damage on guns and affect weapon mods too
+	self.stats.damage = {}
+	for i = 1, 1000 do
+		table.insert(self.stats.damage, i * 0.1)
 	end
 
 	local function kick(up, down, left, right, mul)
@@ -32,6 +38,7 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 
 			if c.shotgun and v.rays then
 				v.rays = 8
+				v.stats.damage = math.ceil(v.stats.damage * 2.5)
 			end
 
 			if v.can_shoot_through_shield then
@@ -42,18 +49,17 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 			-- steelsight spread is applied as a multiplier of (2 - spread) on top of standing or crouching
 			if v.spread then
 				v.spread.standing = c.snp and 10 or c.shotgun and 3 or 2
-				v.spread.crouching = c.snp and 10 or c.shotgun and 3 or 2
+				v.spread.crouching = v.spread.standing * 0.85
 				v.spread.steelsight = c.snp and 1.9 or 1.5
 				v.spread.moving_standing = c.snp and 20 or c.shotgun and 6 or 4
-				v.spread.moving_crouching = c.snp and 20 or c.shotgun and 6 or 4
-				v.spread.moving_steelsight = c.snp and 1.945 or 1.75 -- not actually used by the game
+				v.spread.moving_crouching = v.spread.moving_standing * 0.85
 			end
 
 			if v.kick then
 				local up, down, left, right = unpack(v.kick.standing)
 				local sum = math.abs(up) + math.abs(down) + math.abs(left) + math.abs(right)
 				if sum > 0 then
-					local mul = (dmg ^ 0.2) * 3
+					local mul = (dmg ^ 0.35) * 3
 					up = (up / sum) * mul
 					down = (down / sum) * mul
 					left = (left / sum) * mul
@@ -75,6 +81,8 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 				end
 				v.AMMO_PICKUP = { 35 / ref, 70 / ref }
 			end
+
+			v.damage_falloff = nil
 		end
 	end
 
