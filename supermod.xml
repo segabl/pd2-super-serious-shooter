@@ -55,6 +55,7 @@
 			<post :hook_id="units/weapons/grenades/quickcsgrenade"/>
 			<post :hook_id="units/weapons/grenades/quickflashgrenade"/>
 			<post :hook_id="units/weapons/shotgun/shotgunbase"/>
+			<post :hook_id="units/weapons/newnpcraycastweaponbase"/>
 		</group>
 
 	</hooks>
