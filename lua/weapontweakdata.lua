@@ -83,6 +83,8 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 			end
 
 			v.damage_falloff = nil
+			v.damage_near = nil
+			v.damage_far = nil
 		end
 	end
 
