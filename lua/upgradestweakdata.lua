@@ -2,7 +2,7 @@ Hooks:PostHook(UpgradesTweakData, "init", "init_sss", function (self)
 	self.sentry_gun_base_armor = 50
 
 	for i in ipairs(self.values.player.body_armor.armor) do
-		self.values.player.body_armor.armor[i] = 2.5 * (i - 1)
+		self.values.player.body_armor.armor[i] = 3 * (i - 1)
 	end
 
 	for i in ipairs(self.values.player.body_armor.movement) do
@@ -25,6 +25,6 @@ Hooks:PostHook(UpgradesTweakData, "init", "init_sss", function (self)
 		self.values.player.body_armor.stamina[i] = 1 - 0.05 * (i - 1)
 	end
 
-	self.weapon_movement_penalty.lmg = 0.8
-	self.weapon_movement_penalty.minigun = 0.8
+	self.weapon_movement_penalty.lmg = 0.85
+	self.weapon_movement_penalty.minigun = 0.75
 end)
