@@ -15,8 +15,12 @@ if not SuperSeriousShooter then
 
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitSSS", function (loc)
 		loc:add_localized_strings({
-			bm_menu_sss_weapon_locked = "This is not a super serious weapon",
-			bm_menu_sss_part_locked = "This is not a super serious part"
+			bm_wp_upg_a_custom_desc = loc:text("bm_wp_upg_a_custom_desc") .. "\n6 PELLETS",
+			bm_wp_upg_a_rip_desc = loc:text("bm_wp_upg_a_rip_desc") .. "\n6 PELLETS, NO AMMO PICKUPS",
+			bm_wp_upg_a_explosive_desc = loc:text("bm_wp_upg_a_explosive_desc") .. "\n1 SLUG, NO AMMO PICKUPS",
+			bm_wp_upg_a_piercing_desc = loc:text("bm_wp_upg_a_piercing_desc") .. "\n8 FLECHETTES, REDUCED AMMO PICKUPS",
+			bm_wp_upg_a_slug_desc = loc:text("bm_wp_upg_a_slug_desc") .. "\n1 SLUG, REDUCED AMMO PICKUPS",
+			bm_wp_upg_a_dragons_breath_desc = loc:text("bm_wp_upg_a_dragons_breath_desc") .. "\n8 PELLETS, NO AMMO PICKUPS",
 		})
 	end)
 end

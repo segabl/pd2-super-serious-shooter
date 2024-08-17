@@ -26,19 +26,13 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 			local c = table.list_to_set(v.categories)
 			local dmg = self.stats.damage[math.min(v.stats.damage, #self.stats.damage)] * (v.stats_modifiers and v.stats_modifiers.damage or 1)
 
-			if c.flamethrower or c.minigun or c.grenade_launcher or c.bow or c.crossbow or c.akimbo and (not c.pistol or c.revolver) then
-				v.AMMO_PICKUP = { 0, 0 }
-				v.unlock_func = "super_serious_shooter"
-				v.global_value = "super_serious_shooter_weapon"
-			end
-
-			if c.akimbo then
-				v.stats.spread = math.max(1, math.floor(v.stats.spread * 0.75))
-			end
-
 			if c.shotgun and v.rays then
 				v.rays = 8
 				v.stats.damage = math.ceil(v.stats.damage * 2.5)
+			elseif c.flamethrower then
+				v.CLIP_AMMO_MAX = v.CLIP_AMMO_MAX - 200
+				v.AMMO_MAX = v.CLIP_AMMO_MAX
+				v.NR_CLIPS_MAX = 1
 			end
 
 			if v.can_shoot_through_shield then
@@ -48,18 +42,19 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 
 			-- steelsight spread is applied as a multiplier of (2 - spread) on top of standing or crouching
 			if v.spread then
-				v.spread.standing = c.snp and 10 or c.shotgun and 3 or 2
-				v.spread.crouching = v.spread.standing * 0.85
+				v.spread.standing = (c.snp and 10 or (c.shotgun or c.minigun or c.lmg) and 3 or 2) * (c.akimbo and 3 or 1)
+				v.spread.crouching = v.spread.standing * 0.75
+				v.spread.moving_standing = (c.snp and 20 or c.revolver and 8 or (c.shotgun or c.minigun or c.lmg) and 6 or c.pistol and 3 or 4) * (c.akimbo and 3 or 1)
+				v.spread.moving_crouching = v.spread.moving_standing * 0.75
 				v.spread.steelsight = c.snp and 1.9 or 1.5
-				v.spread.moving_standing = c.snp and 20 or c.shotgun and 6 or 4
-				v.spread.moving_crouching = v.spread.moving_standing * 0.85
+				v.spread.bipod = v.spread.standing * 0.5
 			end
 
 			if v.kick then
 				local up, down, left, right = unpack(v.kick.standing)
 				local sum = math.abs(up) + math.abs(down) + math.abs(left) + math.abs(right)
 				if sum > 0 then
-					local mul = (dmg ^ 0.35) * 3
+					local mul = (dmg ^ 0.35) * (c.akimbo and (c.pistol and 6 or 10) or (c.minigun or c.lmg) and 5 or 3)
 					up = (up / sum) * mul
 					down = (down / sum) * mul
 					left = (left / sum) * mul
@@ -70,7 +65,11 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 				v.kick.steelsight = kick(up, down, left, right, 0.75)
 			end
 
-			if v.AMMO_PICKUP and v.AMMO_PICKUP[2] > 0 then
+			if c.flamethrower or c.minigun or c.grenade_launcher or c.bow or c.crossbow then
+				v.AMMO_PICKUP = { 0, 0 }
+				v.desc_id = "bm_w_rpg7_desc"
+				v.has_description = true
+			elseif v.AMMO_PICKUP and v.AMMO_PICKUP[2] > 0 then
 				local ref = (dmg ^ 1.2) * (v.can_shoot_through_shield and 3 or 1) * (v.rays and 2 or 1)
 				if c.flamethrower then
 					ref = ref * 3

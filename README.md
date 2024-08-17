@@ -11,17 +11,14 @@ This mod doesn't touch your save file, skills or inventory.
 
 - All skill and perk deck effects (including most default upgrades) are disabled
 - Grace period is practically disabled
-- LMGs decrease movement speed while active
-- Non-pistol akimbo and special weapons are locked
+- LMGs and Miniguns decrease movement speed while active
 - Shotguns deal per-pellet damage
-- Some shotgun ammo types are locked
-- Underbarrel ammo pickup is disabled
-- Piercing weapons have reduced pickup and total ammo
+- Ammo pickups are reduced or disabled on special weapons, sniper rifles and some shotgun ammo types
 - All armors are unlocked by default and their stats have been changed to scale linearly
 - Aim punch from being shot is increased
 - Revive health decreases with each revive
 - Stamina drain from jumping is increased
-- Weapon recoil is based on weapon damage and increased when hipfiring and reduced when crouching or aiming down sights
+- Weapon recoil is based on weapon damage and type and increased when hipfiring and reduced when crouching or aiming down sights
 - Weapon spread is increased when moving and reduced when standing still, crouching or aiming down sights
 - Aim re-centering will only apply to the most recently fired shot
 - Insider assets are available for purchase by default
