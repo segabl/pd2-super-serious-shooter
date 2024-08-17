@@ -49,7 +49,7 @@ Hooks:PostHook(CopActionShoot, "update", "update_sss", function (self, t)
 	if self:_is_local_player_target_and_verified() then
 		local screen_pos = managers.hud._workspace:world_to_screen(managers.viewport:get_current_camera(), self._shoot_from_pos)
 		self._glare_bitmap:set_center(screen_pos.x, screen_pos.y)
-		self:_set_glare_alpha(screen_pos.z >= 0 and 0.35 or 0)
+		self:_set_glare_alpha(screen_pos.z >= 0 and 0.3 or 0)
 	else
 		self:_set_glare_alpha(0)
 	end
