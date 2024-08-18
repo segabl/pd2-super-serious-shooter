@@ -3,8 +3,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	local presets = _presets_original(self, tweak_data, ...)
 
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.05
-	presets.gang_member_damage.REGENERATE_TIME = 4
-	presets.gang_member_damage.REGENERATE_TIME_AWAY = 4
+	presets.gang_member_damage.REGENERATE_TIME = 2.5
+	presets.gang_member_damage.REGENERATE_TIME_AWAY = 2.5
 	presets.gang_member_damage.hurt_severity.bullet.health_reference = "full"
 	presets.gang_member_damage.hurt_severity.bullet.zones = {
 		{
@@ -12,12 +12,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			light = 1
 		},
 		{
-			health_limit = StreamHeist and 0.025 or 0.15,
+			health_limit = StreamHeist and 0.05 or 0.15,
 			light = 0.5,
 			moderate = 0.5
 		},
 		{
-			health_limit = StreamHeist and 0.05 or 0.2,
+			health_limit = StreamHeist and 0.1 or 0.2,
 			moderate = 0.5
 		}
 	}
