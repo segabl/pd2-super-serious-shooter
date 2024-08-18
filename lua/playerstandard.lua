@@ -1,9 +1,3 @@
-local _get_unit_intimidation_action_original = PlayerStandard._get_unit_intimidation_action
-function PlayerStandard:_get_unit_intimidation_action(enemies, civilians, teammates, specials_only, ...)
-	specials_only = managers.groupai:state():get_assault_mode() or specials_only
-	return _get_unit_intimidation_action_original(self, enemies, civilians, teammates, specials_only, ...)
-end
-
 local _check_action_jump_original = PlayerStandard._check_action_jump
 function PlayerStandard:_check_action_jump(t, input, ...)
 	local is_running = self._move_dir and self._running and self._unit:movement():is_above_stamina_threshold() and t - self._start_running_t > 0.4
