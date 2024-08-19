@@ -30,7 +30,6 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 				v.rays = 8
 				v.stats.damage = math.ceil(v.stats.damage * 2.5)
 			elseif c.flamethrower then
-				v.CLIP_AMMO_MAX = v.CLIP_AMMO_MAX - 200
 				v.AMMO_MAX = v.CLIP_AMMO_MAX
 				v.NR_CLIPS_MAX = 1
 			end
@@ -70,14 +69,7 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 				v.desc_id = "bm_w_rpg7_desc"
 				v.has_description = true
 			elseif v.AMMO_PICKUP and v.AMMO_PICKUP[2] > 0 then
-				local ref = (dmg ^ 1.2) * (v.can_shoot_through_shield and 3 or 1) * (v.rays and 2 or 1)
-				if c.flamethrower then
-					ref = ref * 3
-				elseif c.grenade_launcher then
-					ref = ref * 2
-				elseif c.pistol then
-					ref = ref * 1.5
-				end
+				local ref = (dmg ^ 1.2) * (v.can_shoot_through_shield and 3 or 1) * (v.rays and 2 or 1) * (c.pistol and 1.5 or 1)
 				v.AMMO_PICKUP = { 35 / ref, 70 / ref }
 			end
 

@@ -1,5 +1,8 @@
 Hooks:PostHook(WeaponFactoryTweakData, "init", "init_sss", function (self)
-	self.parts.wpn_fps_upg_a_slug.stats.damage = -50
+	self.parts.wpn_fps_upg_a_slug.stats.spread = nil
+	self.parts.wpn_fps_upg_a_slug.stats.moving_spread = nil
+	self.parts.wpn_fps_upg_a_slug.stats.damage = -60
+	self.parts.wpn_fps_upg_a_slug.stats.total_ammo_mod = -10
 	self.parts.wpn_fps_upg_a_slug.custom_stats.ammo_pickup_min_mul = 0.35
 	self.parts.wpn_fps_upg_a_slug.custom_stats.ammo_pickup_max_mul = 0.35
 
