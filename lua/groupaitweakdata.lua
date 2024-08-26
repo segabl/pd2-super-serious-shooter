@@ -19,5 +19,12 @@ Hooks:PostHook(GroupAITweakData, "init", "init_sss", function (self)
 		end
 	end
 
+	for _, tactics in pairs(self._tactics) do
+		table.delete(tactics, "charge")
+		if not table.contains(tactics, "ranged_fire") then
+			table.insert(tactics, "ranged_fire")
+		end
+	end
+
 	self.enemy_spawn_groups.marshal_squad = nil
 end)
