@@ -14,6 +14,7 @@ This mod doesn't touch your save file, skills or inventory.
 - LMGs and Miniguns decrease movement speed while active
 - Shotguns deal per-pellet damage
 - Ammo pickups are reduced or disabled on special weapons, sniper rifles and some shotgun ammo types
+- Piercing weapons deal less damage through shields and walls
 - All armors are unlocked by default and their stats have been changed to scale linearly
 - Aim punch from being shot is increased
 - Revive health decreases with each revive

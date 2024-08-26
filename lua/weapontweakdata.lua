@@ -34,11 +34,6 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 				v.NR_CLIPS_MAX = 1
 			end
 
-			if v.can_shoot_through_shield then
-				v.NR_CLIPS_MAX = math.max(2, math.floor(15 / math.max(2, v.CLIP_AMMO_MAX)))
-				v.AMMO_MAX = v.CLIP_AMMO_MAX * v.NR_CLIPS_MAX
-			end
-
 			-- steelsight spread is applied as a multiplier of (2 - spread) on top of standing or crouching
 			if v.spread then
 				v.spread.standing = (c.snp and 10 or (c.shotgun or c.minigun or c.lmg) and 3 or 2) * (c.akimbo and 3 or 1)

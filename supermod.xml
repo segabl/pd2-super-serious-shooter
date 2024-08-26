@@ -53,10 +53,13 @@
 			<post :hook_id="units/player_team/teamaibase"/>
 			<post :hook_id="units/player_team/teamaidamage"/>
 
-			<post :hook_id="units/weapons/grenades/quickcsgrenade"/>
-			<post :hook_id="units/weapons/grenades/quickflashgrenade"/>
-			<post :hook_id="units/weapons/shotgun/shotgunbase"/>
-			<post :hook_id="units/weapons/newnpcraycastweaponbase"/>
+			<group :hook_id="units/weapons/">
+				<post :hook_id="grenades/quickcsgrenade"/>
+				<post :hook_id="grenades/quickflashgrenade"/>
+				<post :hook_id="shotgun/shotgunbase"/>
+				<post :hook_id="newnpcraycastweaponbase"/>
+				<post :hook_id="newraycastweaponbase"/>
+			</group>
 		</group>
 
 	</hooks>
