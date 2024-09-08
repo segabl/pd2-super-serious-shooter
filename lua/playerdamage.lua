@@ -1,3 +1,11 @@
+local init_original = PlayerDamage.init
+function PlayerDamage:init(...)
+	local one_down = Global.game_settings.one_down
+	Global.game_settings.one_down = nil
+	init_original(self, ...)
+	Global.game_settings.one_down = one_down
+end
+
 Hooks:PreHook(PlayerDamage, "damage_bullet", "damage_bullet_sss", function (self, attack_data)
 	if not attack_data or not attack_data.damage then
 		return

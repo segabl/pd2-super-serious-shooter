@@ -35,6 +35,7 @@
 			<group :hook_id="units/beings/player/">
 				<post :hook_id="states/playerbleedout"/>
 				<post :hook_id="states/playerstandard"/>
+				<post :hook_id="huskplayerdamage"/>
 				<post :hook_id="playercamera"/>
 				<post :hook_id="playerdamage"/>
 			</group>

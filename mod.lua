@@ -21,6 +21,8 @@ if not SuperSeriousShooter then
 			bm_wp_upg_a_piercing_desc = loc:text("bm_wp_upg_a_piercing_desc") .. "\n8 FLECHETTES, REDUCED AMMO PICKUPS",
 			bm_wp_upg_a_slug_desc = loc:text("bm_wp_upg_a_slug_desc") .. "\n1 SLUG, REDUCED AMMO PICKUPS",
 			bm_wp_upg_a_dragons_breath_desc = loc:text("bm_wp_upg_a_dragons_breath_desc") .. "\n8 PELLETS, NO AMMO PICKUPS",
+			menu_one_down = "Special Operation",
+			menu_toggle_one_down = "Special Operation"
 		})
 	end)
 end

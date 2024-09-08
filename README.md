@@ -36,6 +36,7 @@ This mod doesn't touch your save file, skills or inventory.
 
 - Enemy amount is reduced
 - Special enemies other than Shields are disabled (other specials can still spawn as scripted spawns)
+- The "One Down" modifier is replaced with "Special Operation" which re-enables special spawns
 - Enemy intimidation is only possible during assault breaks and chances are reduced
 - Enemy accuracy is increased when they stand still
 - Enemy logic update rate is increased
