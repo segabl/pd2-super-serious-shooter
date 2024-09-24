@@ -11,24 +11,35 @@ Hooks:PostHook(GroupAITweakData, "init", "init_sss", function (self)
 		self.special_unit_spawn_limits[special] = (one_down or special == "shield") and math.min(special == "tank" and 1 or 2, limit) or 0
 	end
 
+	local special_weights = {
+		tank = { 1, 0.35 },
+		shield = { 2, 0.65 },
+		default = { 3, 0.5 }
+	}
+
 	for _, group_ai_state_name in pairs({ "besiege", "street", "safehouse" }) do
 		for _, assault_state in pairs(self[group_ai_state_name]) do
 			if type(assault_state) == "table" and type(assault_state.groups) == "table" then
 				for group_name, weights in pairs(assault_state.groups) do
 					local group = self.enemy_spawn_groups[group_name]
 					if group then
-						local is_special_group = false
+						local special_group_weight
 						for _, data in pairs(group.spawn) do
-							if self.unit_categories[data.unit].special_type ~= nil then
+							local special_type = self.unit_categories[data.unit].special_type
+							if special_type ~= nil then
 								data.amount_max = 1
 								data.amount_min = math.min(data.amount_max, data.amount_min or 0)
+								data.freq = data.freq * 0.75
 								if data.amount_min > 0 then
-									is_special_group = true
+									local special_weight = special_weights[special_type] or special_weights.default
+									if not special_group_weight or special_weight[1] < special_group_weight[1] then
+										special_group_weight = special_weight
+									end
 								end
 							end
 						end
-						if is_special_group then
-							assault_state.groups[group_name] = table.collect(weights, function(w) return w * 0.5 end)
+						if special_group_weight then
+							assault_state.groups[group_name] = table.collect(weights, function(w) return w * special_group_weight[2] end)
 						end
 					end
 				end
