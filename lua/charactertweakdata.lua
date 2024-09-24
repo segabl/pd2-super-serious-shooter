@@ -3,8 +3,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	local presets = _presets_original(self, tweak_data, ...)
 
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.05
-	presets.gang_member_damage.REGENERATE_TIME = 2.5
-	presets.gang_member_damage.REGENERATE_TIME_AWAY = 2.5
+	presets.gang_member_damage.REGENERATE_TIME = 2
+	presets.gang_member_damage.REGENERATE_TIME_AWAY = 2
 	presets.gang_member_damage.hurt_severity.bullet.health_reference = "full"
 	presets.gang_member_damage.hurt_severity.bullet.zones = {
 		{
