@@ -70,7 +70,7 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 				v.desc_id = "bm_w_rpg7_desc"
 				v.has_description = true
 			elseif v.AMMO_PICKUP and v.AMMO_PICKUP[2] > 0 then
-				local ref = (dmg ^ 1.2) * (v.can_shoot_through_shield and 3 or 1) * (v.rays and 2 or 1) * (c.pistol and 1.5 or 1)
+				local ref = (dmg ^ 1.2) * (v.can_shoot_through_shield and 2.5 or 1) * (v.rays and 2 or 1) * (c.pistol and 1.5 or 1)
 				v.AMMO_PICKUP = { 35 / ref, 70 / ref }
 			end
 
