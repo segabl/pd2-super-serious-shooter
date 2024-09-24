@@ -32,11 +32,12 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 		self:_call_listeners(damage_info)
 		return
 	elseif self:incapacitated() or self._unit:movement():current_state().immortal then
+		self._last_teargas_hit_t = nil
 		return
 	end
 
 	local t = managers.player:player_timer():time()
-	if not self._last_teargas_hit_t or self._last_teargas_hit_t + 5 < t then
+	if not self._last_teargas_hit_t or self._last_teargas_hit_t + 4 < t then
 		self._teargas_damage_ramp = -0.1
 	else
 		self._teargas_damage_ramp = math.min(self._teargas_damage_ramp + 0.1, 1)
