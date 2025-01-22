@@ -1,4 +1,4 @@
-Hooks:PostHook(GroupAITweakData, "init", "init_sss", function (self)
+Hooks:PostHook(GroupAITweakData, "init", "init_sss", function(self)
 	self.smoke_and_flash_grenade_timeout = { 7.5, 15 }
 	self.min_grenade_timeout = 10
 	self.no_grenade_push_delay = 10
@@ -16,7 +16,11 @@ Hooks:PostHook(GroupAITweakData, "init", "init_sss", function (self)
 		shield = { 2, 0.65 },
 		default = { 3, 0.5 }
 	}
-
+	local remove_units = {
+		marshal_marksman = true,
+		marshal_shield = true
+	}
+	local removed_groups = {}
 	for _, group_ai_state_name in pairs({ "besiege", "street", "safehouse" }) do
 		for _, assault_state in pairs(self[group_ai_state_name]) do
 			if type(assault_state) == "table" and type(assault_state.groups) == "table" then
@@ -24,23 +28,30 @@ Hooks:PostHook(GroupAITweakData, "init", "init_sss", function (self)
 					local group = self.enemy_spawn_groups[group_name]
 					if group then
 						local special_group_weight
-						for _, data in pairs(group.spawn) do
-							local special_type = self.unit_categories[data.unit].special_type
-							if special_type ~= nil then
+						for i, data in table.reverse_ipairs(group.spawn) do
+							if remove_units[data.unit] then
+								table.remove(group.spawn, i)
+							elseif self.unit_categories[data.unit].special_type then
 								data.amount_max = 1
 								data.amount_min = math.min(data.amount_max, data.amount_min or 0)
 								data.freq = data.freq * 0.75
 								if data.amount_min > 0 then
-									local special_weight = special_weights[special_type] or special_weights.default
+									local special_weight = special_weights[self.unit_categories[data.unit].special_type] or special_weights.default
 									if not special_group_weight or special_weight[1] < special_group_weight[1] then
 										special_group_weight = special_weight
 									end
 								end
 							end
 						end
-						if special_group_weight then
+						if #group.spawn == 0 then
+							self.enemy_spawn_groups[group_name] = nil
+							assault_state.groups[group_name] = nil
+							removed_groups[group_name] = true
+						elseif special_group_weight then
 							assault_state.groups[group_name] = table.collect(weights, function(w) return w * special_group_weight[2] end)
 						end
+					elseif removed_groups[group_name] then
+						assault_state.groups[group_name] = nil
 					end
 				end
 			end
@@ -53,6 +64,4 @@ Hooks:PostHook(GroupAITweakData, "init", "init_sss", function (self)
 			table.insert(tactics, "ranged_fire")
 		end
 	end
-
-	self.enemy_spawn_groups.marshal_squad = nil
 end)
