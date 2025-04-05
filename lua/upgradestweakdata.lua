@@ -6,7 +6,7 @@ Hooks:PostHook(UpgradesTweakData, "init", "init_sss", function (self)
 	end
 
 	for i in ipairs(self.values.player.body_armor.movement) do
-		self.values.player.body_armor.movement[i] = 1.2 - 0.1 * (i - 1)
+		self.values.player.body_armor.movement[i] = 1.2 - 0.08 * (i - 1)
 	end
 
 	for i in ipairs(self.values.player.body_armor.concealment) do
