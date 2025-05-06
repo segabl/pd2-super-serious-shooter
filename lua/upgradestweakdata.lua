@@ -14,7 +14,7 @@ Hooks:PostHook(UpgradesTweakData, "init", "init_sss", function (self)
 	end
 
 	for i in ipairs(self.values.player.body_armor.dodge) do
-		self.values.player.body_armor.dodge[i] = 0.15 - 0.05 * (i - 1)
+		self.values.player.body_armor.dodge[i] = 0.3 - 0.05 * (i - 1)
 	end
 
 	for i in ipairs(self.values.player.body_armor.damage_shake) do
