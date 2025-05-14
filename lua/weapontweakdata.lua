@@ -29,6 +29,7 @@ Hooks:PostHook(WeaponTweakData, "init", "init_sss", function (self, tweak_data)
 			if c.shotgun and v.rays then
 				v.rays = 8
 				v.stats.damage = math.ceil(v.stats.damage * 2.5)
+				v.stats.spread = math.min(#self.stats.spread, v.stats.spread + 2)
 			elseif c.flamethrower then
 				v.AMMO_MAX = v.CLIP_AMMO_MAX
 				v.NR_CLIPS_MAX = 1
