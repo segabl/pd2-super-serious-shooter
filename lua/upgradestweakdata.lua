@@ -1,8 +1,8 @@
-Hooks:PostHook(UpgradesTweakData, "init", "init_sss", function (self)
+Hooks:PostHook(UpgradesTweakData, "init", "init_sss", function(self)
 	self.sentry_gun_base_armor = 50
 
 	for i in ipairs(self.values.player.body_armor.armor) do
-		self.values.player.body_armor.armor[i] = 3 * (i - 1)
+		self.values.player.body_armor.armor[i] = 2 + 3 * (i - 1)
 	end
 
 	for i in ipairs(self.values.player.body_armor.movement) do
@@ -14,7 +14,9 @@ Hooks:PostHook(UpgradesTweakData, "init", "init_sss", function (self)
 	end
 
 	for i in ipairs(self.values.player.body_armor.dodge) do
-		self.values.player.body_armor.dodge[i] = 0.3 - 0.05 * (i - 1)
+		local current = self.values.player.body_armor.armor[i]
+		local next = self.values.player.body_armor.armor[i + 1] or current
+		self.values.player.body_armor.dodge[i] = math.round(1 - (current / next), 0.005)
 	end
 
 	for i in ipairs(self.values.player.body_armor.damage_shake) do

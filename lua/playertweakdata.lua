@@ -1,4 +1,8 @@
-SuperSeriousShooter:difficulty_tweak(PlayerTweakData, function (self)
+Hooks:PostHook(PlayerTweakData, "init", "init_sss", function(self)
+	self.damage.ARMOR_INIT = 0
+end)
+
+SuperSeriousShooter:difficulty_tweak(PlayerTweakData, function(self)
 	self.damage.LIVES_INIT = 5
 	self.damage.MIN_DAMAGE_INTERVAL = 0.05
 	self.damage.REVIVE_HEALTH_STEPS = { 0.8, 0.6, 0.4, 0.2 }
