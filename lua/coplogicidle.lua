@@ -5,7 +5,7 @@ end
 local on_intimidated_original = CopLogicIdle.on_intimidated
 function CopLogicIdle.on_intimidated(data, amount, aggressor_unit, ...)
 	local surrender = on_intimidated_original(data, amount, aggressor_unit, ...)
-	if surrender or data.char_tweak.priority_shout or not data.team.foes.criminal1 or data.char_tweak.surrender == tweak_data.character.presets.surrender.special then
+	if surrender or data.char_tweak.priority_shout or not data.team.foes.criminal1 or data.char_tweak.surrender == tweak_data.character.presets.surrender.never then
 		data._skip_surrender_hints = nil
 		return surrender
 	end
