@@ -13,6 +13,13 @@ if not SuperSeriousShooter then
 		end
 	end
 
+	function SuperSeriousShooter:ws()
+		if not self._ws then
+			self._ws = Overlay:gui():create_screen_workspace()
+		end
+		return self._ws
+	end
+
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitSSS", function (loc)
 		loc:add_localized_strings({
 			bm_wp_upg_a_custom_desc = loc:text("bm_wp_upg_a_custom_desc") .. "\n6 PELLETS",
