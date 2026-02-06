@@ -51,8 +51,11 @@
 				<post :hook_id="copdamage"/>
 			</group>
 
-			<post :hook_id="units/player_team/teamaibase"/>
-			<post :hook_id="units/player_team/teamaidamage"/>
+			<group :hook_id="units/player_team/">
+				<post :hook_id="logics/teamailogicidle"/>
+				<post :hook_id="teamaibase"/>
+				<post :hook_id="teamaidamage"/>
+			</group>
 
 			<group :hook_id="units/weapons/">
 				<post :hook_id="grenades/quickcsgrenade"/>

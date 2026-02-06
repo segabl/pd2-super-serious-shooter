@@ -91,7 +91,7 @@ end
 
 SuperSeriousShooter:difficulty_tweak(CharacterTweakData, function (self)
 	local diff_i = self.tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
-	self.presets.gang_member_damage.HEALTH_INIT = 40 + (diff_i - 2) * 10
+	self.presets.gang_member_damage.HEALTH_INIT = 32 + (diff_i ^ 2) * 2
 
 	self.biker_boss.HEALTH_INIT = 300
 	self.biker_boss.player_health_scaling_mul = 1.25
