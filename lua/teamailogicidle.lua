@@ -1,4 +1,10 @@
-function TeamAILogicIdle._check_should_relocate(data, my_data, objective)
+local _check_should_relocate_original = TeamAILogicIdle._check_should_relocate
+function TeamAILogicIdle._check_should_relocate(data, my_data, objective, ...)
+	local ub_follow_behavior = UsefulBots and UsefulBots.player_settings and UsefulBots:player_settings(objective.follow_unit).follow_behavior
+	if ub_follow_behavior and ub_follow_behavior ~= 1 then
+		return _check_should_relocate_original(data, my_data, objective, ...)
+	end
+
 	local follow_movement = objective.follow_unit:movement()
 	if data.unit:raycast("ray", data.unit:movement():m_head_pos(), follow_movement:m_head_pos(), "slot_mask", data.visibility_slotmask, "report") then
 		return true
