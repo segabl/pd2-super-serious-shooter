@@ -89,7 +89,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	return presets
 end
 
-SuperSeriousShooter:difficulty_tweak(CharacterTweakData, function (self)
+SuperSeriousShooter:difficulty_tweak(CharacterTweakData, function(self)
 	local diff_i = self.tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
 	self.presets.gang_member_damage.HEALTH_INIT = 32 + (diff_i ^ 2) * 2
 
@@ -121,11 +121,19 @@ SuperSeriousShooter:difficulty_tweak(CharacterTweakData, function (self)
 	self.flashbang_multiplier = 1
 
 	for _, char_name in pairs(self._enemy_list) do
-		for _, preset in pairs(self[char_name] and self[char_name].weapon or {}) do
-			local autofire = preset.autofire_rounds and (preset.autofire_rounds[1] + preset.autofire_rounds[2]) / 2
-			if autofire and not preset._focus_delay_modified then
-				preset._focus_delay_modified = true
-				preset.focus_delay = preset.focus_delay * autofire ^ 0.5
+		local char_tweak = self[char_name]
+		if char_tweak and char_tweak.weapon then
+			local is_sniper = char_tweak.tags and table.contains(char_tweak, "sniper")
+			for _, preset in pairs(char_tweak.weapon) do
+				if preset._sss_modified then
+				elseif preset.autofire_rounds then
+					local autofire = (preset.autofire_rounds[1] + preset.autofire_rounds[2]) / 2
+					preset.focus_delay = preset.focus_delay * autofire ^ 0.5
+				elseif is_sniper then
+					local min_delay = math.max(preset.aim_delay[1], 1.3 - diff_i / 10)
+					preset.aim_delay = { min_delay, min_delay * 2 }
+				end
+				preset._sss_modified = true
 			end
 		end
 	end
