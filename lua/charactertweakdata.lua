@@ -119,4 +119,14 @@ SuperSeriousShooter:difficulty_tweak(CharacterTweakData, function (self)
 	self.tank_glass_damage_mul = 1
 
 	self.flashbang_multiplier = 1
+
+	for _, char_name in pairs(self._enemy_list) do
+		for _, preset in pairs(self[char_name] and self[char_name].weapon or {}) do
+			local autofire = preset.autofire_rounds and (preset.autofire_rounds[1] + preset.autofire_rounds[2]) / 2
+			if autofire and not preset._focus_delay_modified then
+				preset._focus_delay_modified = true
+				preset.focus_delay = preset.focus_delay * autofire ^ 0.5
+			end
+		end
+	end
 end)
