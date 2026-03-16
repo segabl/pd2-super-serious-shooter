@@ -38,7 +38,7 @@ This mod doesn't touch your save file, skills or inventory.
 - Special enemies other than Shields are disabled (other specials can still spawn as scripted spawns)
 - The "One Down" modifier is replaced with "Special Operation" which re-enables special spawns
 - Enemy intimidation is only possible during assault breaks and chances are reduced
-- Enemy accuracy is increased when they stand still
+- Enemy accuracy is reduced while they move
 - Enemy logic update rate is increased
 - SWAT turret health is decreased
 - Captain Winters is disabled
