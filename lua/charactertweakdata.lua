@@ -131,7 +131,7 @@ SuperSeriousShooter:difficulty_tweak(CharacterTweakData, function(self)
 					preset.focus_delay = preset.focus_delay * autofire ^ 0.5
 				elseif is_sniper then
 					local min_delay = math.max(preset.aim_delay[1], 1.3 - diff_i / 10)
-					preset.aim_delay = { min_delay, min_delay * 2 }
+					preset.aim_delay = { min_delay, min_delay * 1.5 }
 				end
 				preset._sss_modified = true
 			end
