@@ -1,9 +1,21 @@
-local tank_replacement = { "tank", 1, "FBI_heavy_R870" }
-local sniper_replacement = { "sniper", Global.game_settings and Global.game_settings.one_down and 4 or 2, "FBI_swat_M4", "sniper" }
+local tank_replacement = {
+	special_type = "tank",
+	limit = 1,
+	category = "FBI_heavy_R870",
+	chance = 0.35
+}
+local sniper_replacement = {
+	special_type = "sniper",
+	limit = Global.game_settings and Global.game_settings.one_down and 6 or 3,
+	category = "FBI_swat_M4",
+	access = "sniper"
+}
+---@type table<string, { special_type: string, limit: number, category: string, access?: string, chance?: number }>
 ElementSpawnEnemyDummy.sss_replacements = {
 	[("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"):key()] = tank_replacement,
 	[("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2"):key()] = tank_replacement,
 	[("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"):key()] = tank_replacement,
+	[("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"):key()] = tank_replacement,
 	[("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer_2/ene_zeal_bulldozer_2"):key()] = tank_replacement,
 	[("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer_3/ene_zeal_bulldozer_3"):key()] = tank_replacement,
 	[("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer"):key()] = tank_replacement,
@@ -42,25 +54,29 @@ function ElementSpawnEnemyDummy:produce(params, ...)
 	end
 
 	local enemy_name = self._possible_enemies and self._possible_enemies[1] or self._patched_enemy_name or self._enemy_name
-	local replacement_data = ElementSpawnEnemyDummy.sss_replacements[enemy_name:key()]
-	if not replacement_data then
+	local replacement = self.sss_replacements[enemy_name:key()]
+	if not replacement then
 		return produce_original(self, params, ...)
 	end
 
-	local enemy_type, enemy_limit, enemy_category, enemy_access = unpack(replacement_data)
-	local replacement = tweak_data.group_ai.unit_categories[enemy_category]
-	local active = managers.groupai:state()._special_units[enemy_type] or {}
-	if not replacement or table.size(active) < enemy_limit then
+	local unit_category = tweak_data.group_ai.unit_categories[replacement.category]
+	if not unit_category then
 		return produce_original(self, params, ...)
 	end
 
-	self._enemy_name = table.random(replacement.unit_types[tweak_data.levels:get_ai_group_type()])
+	local active = managers.groupai:state()._special_units[replacement.special_type] or {}
+	local replace = table.size(active) >= replacement.limit or math.random() < (replacement.chance or 0)
+	if not replace then
+		return produce_original(self, params, ...)
+	end
+
+	self._enemy_name = table.random(unit_category.unit_types[tweak_data.levels:get_ai_group_type()])
 	local unit = produce_original(self, params, ...)
-	if unit and enemy_access then
+	if unit and replacement.access then
 		local brain = unit:brain()
-		brain._SO_access = managers.navigation:convert_access_flag(enemy_access)
+		brain._SO_access = managers.navigation:convert_access_flag(replacement.access)
 		brain._logic_data.SO_access = brain._SO_access
-		brain._logic_data.SO_access_str = enemy_access
+		brain._logic_data.SO_access_str = replacement.access
 	end
 	self._enemy_name = enemy_name
 
