@@ -5,12 +5,10 @@ end
 Hooks:PostHook(GroupAIStateBase, "_init_misc_data", "_init_misc_data_sss", register_special_types)
 Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "on_simulation_started_sss", register_special_types)
 
-Hooks:OverrideFunction(GroupAIStateBase, "_set_rescue_state", function (self, state)
-	self._rescue_allowed = state
-end)
-
 function GroupAIStateBase:has_room_for_police_hostage()
-	return self._rescue_allowed and self._police_hostage_headcount + table.size(self._converted_police) < 4 or false
+	local task_data = self._task_data.assault
+	local is_assault = task_data.active and task_data.phase ~= "fade" and task_data.phase ~= "anticipation"
+	return not is_assault and self._police_hostage_headcount < 4 or false
 end
 
 function GroupAIStateBase:_process_recurring_grp_SO() end
