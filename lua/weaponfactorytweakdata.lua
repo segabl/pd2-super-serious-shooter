@@ -16,6 +16,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "init_sss", function (self)
 	self.parts.wpn_fps_upg_a_piercing.custom_stats.ammo_pickup_min_mul = 0.35
 	self.parts.wpn_fps_upg_a_piercing.custom_stats.ammo_pickup_max_mul = 0.35
 
+	self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.rays = 8
 	self.parts.wpn_fps_upg_a_dragons_breath.stats.damage = -20
 	self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.ammo_pickup_min_mul = 0
 	self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.ammo_pickup_max_mul = 0
