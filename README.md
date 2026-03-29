@@ -37,7 +37,7 @@ This mod doesn't touch your save file, skills or inventory.
 - Enemy amount is reduced
 - Special enemies other than Shields are disabled (other specials can still spawn as scripted spawns)
 - The "One Down" modifier is replaced with "Special Operation" which re-enables special spawns
-- Enemy intimidation is only possible during assault breaks and chances are reduced
+- Enemies will only surrender during assault breaks or when they are retreating
 - Enemy accuracy is reduced while they move
 - Enemy logic update rate is increased
 - SWAT turret health is decreased
