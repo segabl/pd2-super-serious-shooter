@@ -4,7 +4,7 @@ Hooks:PreHook(PlayerTased, "_check_action_shock", "_check_action_shock_sss", fun
 	end
 
 	self._unit:character_damage():damage_health({
-		damage = 0.025,
+		damage = 0.02,
 		is_percentage = true
 	})
 end)

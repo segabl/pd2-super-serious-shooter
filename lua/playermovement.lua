@@ -4,7 +4,7 @@ Hooks:PreHook(PlayerMovement, "on_SPOOCed", "on_SPOOCed_sss", function(self)
 	end
 
 	self._unit:character_damage():damage_health({
-		damage = 0.25,
+		damage = 0.2,
 		is_percentage = true
 	})
 end)
